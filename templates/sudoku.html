@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link data-require="bootstrap-css@3.3.1" data-semver="3.3.1" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/static/Vik.css" type="text/css" />
+<title>Sudoku Solver</title>
+<style type="text/css">
+	input[type="number"] {
+   width:40px;
+   font-weight:bold;
+}
+tr.border_bottom td {
+  border-bottom:3pt solid black;
+}
+tr.border_top td {
+  border-top:3pt solid black;
+}
+td.border_left{
+  border-left:3pt solid black;
+}
+td.border_right{
+  border-right:3pt solid black;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+	<h1> Sudoku Solver </h1>
+	<br />
+	<br />
+	<form role="form" action="solve" method="GET">
+	  <div class="form-group">
+	  <table width="300">
+	 	<tr class="border_top">
+	    	<td class="border_left">
+				<input type="number" name="n00" value="{{doku.n00}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n01" value="{{doku.n01}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n02" value="{{doku.n02}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n03" value="{{doku.n03}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n04" value="{{doku.n04}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n05" value="{{doku.n05}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n06" value="{{doku.n06}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n07" value="{{doku.n07}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n08" value="{{doku.n08}}" max="9" min="1">
+			</td>
+		</tr>
+		<tr>
+	    	<td class="border_left">
+				<input type="number" name="n10" value="{{doku.n10}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n11" value="{{doku.n11}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n12" value="{{doku.n12}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n13" value="{{doku.n13}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n14" value="{{doku.n14}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n15" value="{{doku.n15}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n16" value="{{doku.n16}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n17" value="{{doku.n17}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n18" value="{{doku.n18}}" max="9" min="1">
+			</td>
+		</tr>
+		<tr class="border_bottom">
+	    	<td class="border_left">
+				<input type="number" name="n20" value="{{doku.n20}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n21" value="{{doku.n21}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n22" value="{{doku.n22}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n23" value="{{doku.n23}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n24" value="{{doku.n24}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n25" value="{{doku.n25}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n26" value="{{doku.n26}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n27" value="{{doku.n27}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n28" value="{{doku.n28}}" max="9" min="1">
+			</td>
+		</tr>
+		<tr>
+	    	<td class="border_left">
+				<input type="number" name="n30" value="{{doku.n30}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n31" value="{{doku.n31}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n32" value="{{doku.n32}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n33" value="{{doku.n33}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n34" value="{{doku.n34}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n35" value="{{doku.n35}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n36" value="{{doku.n36}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n37" value="{{doku.n37}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n38" value="{{doku.n38}}" max="9" min="1">
+			</td>
+		</tr>
+		<tr>
+	    	<td class="border_left">
+				<input type="number" name="n40" value="{{doku.n40}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n41" value="{{doku.n41}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n42" value="{{doku.n42}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n43" value="{{doku.n43}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n44" value="{{doku.n44}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n45" value="{{doku.n45}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n46" value="{{doku.n46}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n47" value="{{doku.n47}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n48" value="{{doku.n48}}" max="9" min="1">
+			</td>
+		</tr>
+		<tr class="border_bottom">
+	    	<td class="border_left">
+				<input type="number" name="n50" value="{{doku.n50}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n51" value="{{doku.n51}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n52" value="{{doku.n52}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n53" value="{{doku.n53}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n54" value="{{doku.n54}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n55" value="{{doku.n55}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n56" value="{{doku.n56}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n57" value="{{doku.n57}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n58" value="{{doku.n58}}" max="9" min="1">
+			</td>
+		</tr>
+		<tr>
+	    	<td class="border_left">
+				<input type="number" name="n60" value="{{doku.n60}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n61" value="{{doku.n61}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n62" value="{{doku.n62}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n63" value="{{doku.n63}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n64" value="{{doku.n64}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n65" value="{{doku.n65}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n66" value="{{doku.n66}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n67" value="{{doku.n67}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n68" value="{{doku.n68}}" max="9" min="1">
+			</td>
+		</tr>
+		<tr>
+	    	<td class="border_left">
+				<input type="number" name="n70" value="{{doku.n70}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n71" value="{{doku.n71}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n72" value="{{doku.n72}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n73" value="{{doku.n73}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n74" value="{{doku.n74}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n75" value="{{doku.n75}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n76" value="{{doku.n76}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n77" value="{{doku.n77}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n78" value="{{doku.n78}}" max="9" min="1">
+			</td>
+		</tr>
+		<tr class="border_bottom">
+	    	<td class="border_left">
+				<input type="number" name="n80" value="{{doku.n80}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n81" value="{{doku.n81}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n82" value="{{doku.n82}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n83" value="{{doku.n83}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n84" value="{{doku.n84}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n85" value="{{doku.n85}}" max="9" min="1">
+			</td>
+			<td class="border_left">
+				<input type="number" name="n86" value="{{doku.n86}}" max="9" min="1">
+			</td>
+			<td>
+				<input type="number" name="n87" value="{{doku.n87}}" max="9" min="1">
+			</td>
+			<td class="border_right">
+				<input type="number" name="n88" value="{{doku.n88}}" max="9" min="1">
+			</td>
+		</tr>
+	</table>
+		<br />
+		<br />
+		<div>
+			<div class="col-xs-12">
+				<!--<input type="submit" Value="Submit" formmethod="POST"/>-->
+				<button type="submit" class="btn btn-primary">Solve</button>
+			</div>
+		</div>
+	<!--<p>Lets see what we get </p>-->
+	</form>
+</div>
+</body>
+</html>
