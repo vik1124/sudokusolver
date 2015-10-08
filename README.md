@@ -4,3 +4,5 @@ Python 2.*
 * sudoku.py - Actual implementation of the algorithm 
 * sudokusolver.py - Flask app, that'll launch on your browser, needs flask installed on machine
 * sudokusolverbottle.py - Bottle app, that'll launch on your browser. No installation required. Vannila Python install is good enough
+
+Implementation can be found at http:/www.vikwiz.org/sudoku
